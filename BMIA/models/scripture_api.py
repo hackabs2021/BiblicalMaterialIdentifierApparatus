@@ -93,7 +93,7 @@ def main():
 
     # Retrieve API key
     api_key = ""
-    with open("api_key.txt", "r") as api_key_file:
+    with open("../../website/models/api_key.txt", "r") as api_key_file:
         lines =  api_key_file.readlines() # Read file
 
         # Validate file content
