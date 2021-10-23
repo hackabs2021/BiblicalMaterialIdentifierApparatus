@@ -33,13 +33,13 @@ html {
 }
 
 .chatNow-btn {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
-  background: green;
+  background: #4086e1;
   color: white;
   font-size: 18px;
-  border: 2px solid green;
+  border: 2px solid #4086e1;
   box-shadow: 1px 1px solid grey;
 }
 
@@ -47,8 +47,8 @@ html {
 .form__send__btn:hover {
   transition: 0.3s;
   background: white;
-  border: 2px solid green;
-  color: green;
+  border: 2px solid #4086e1;
+  color: #4086e1;
   cursor: pointer;
 }
 
@@ -94,6 +94,12 @@ html {
   border: none;
   resize: none;
   height: 30px;
+  outline: none;
+}
+
+.chat_form textarea:active {
+  outline: none;
+  border:none;
 }
 
 .form__send__btn {
