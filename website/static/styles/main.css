@@ -6,6 +6,10 @@ html {
   font-family: sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .heading {
   width: 100%;
   padding: 12px;
@@ -62,79 +66,88 @@ html {
 .modal {
   display: none;
   position: absolute;
-  width: 80%;
+  width: 40%;
   background: white;
-  left: 0;
-  right: 0;
+  right: 8px;
   margin: auto;
-  top: 30%;
-  padding: 20px;
+  bottom: 100%;
   border: 1px solid #cbcbcb;
   border-radius: 5px;
   z-index: 2;
+  /* display: flex; */
 }
 
 .chat_form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #d3d3d3;
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .chat_form textarea {
-  width: 100%;
-  padding: 12px;
+  width: 75%;
   background: #d3d3d3;
   border: none;
-  resize: vertical;
-  min-height: 100px;
+  resize: none;
+  height: 30px;
 }
 
 .form__send__btn {
-  padding: 12px;
-  margin-top: 20px;
-  width: 120px;
-  background: green;
-  border: 2px solid green;
-  border-radius: 5px;
+  width: 50px;
+  background: #6a6a6a;
+  border: 2px solid #6a6a6a;
   color: white;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
 }
 
 .modal__controls {
   display: flex;
   justify-content: flex-end;
-  padding: 5px 0;
+  padding: 12px;
+  background: #7474fb;
+  border-radius: 5px 5px 0 0;
 }
 
 .modal__close {
-  color: #df5b5b;
+  color: #ffffff;
 }
 
 .modal__close:hover {
   transition: 0.3s;
   cursor: pointer;
-  color: #ff0000;
+  color: #9d9d9d;
 }
 
 .message_box {
-  width: 80%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   padding: 12px;
-  border: 1px solid #cfcfcf;
   border-radius: 5px;
+  min-height: 200px;
+  align-items: flex-start;
 }
 
 .single_message {
-  background-color: #ff9235;
+  background-color: #253c70;
   color: white;
   width: 51%;
   padding: 12px;
   border-radius: 5px;
   /* align-self: flex-start; */
+  font-size: 12px;
+  margin-left: auto;
+  margin-top: 0px;
 }
 
 .single_message_bot {
-  margin-left: auto;
-  background-color: #8f6d50;
+  margin-right: auto;
+  margin-left: 0;
+  background-color: #7292ed;
 }

@@ -1,4 +1,5 @@
 let messageURL = 'http://127.0.0.1:5000/message'
+let welcomedUser = false
 
 function sendMessage(payload) {
   $.post(messageURL, payload, function (data, status) {})
@@ -20,13 +21,17 @@ $.when($.ready).then(function () {
   $('#chatNow').bind('click', function () {
     $('#backdrop').show()
     $('#modal').show()
+    if (!welcomedUser) {
+      setTimeout(() => {
+        welcomedUser = true
+        addMessage('Hi there! How can I help today?', true)
+      }, 2000)
+    }
   })
 
   $('#chat_form').on('submit', function (e) {
     e.preventDefault()
     let message = $('#textarea').val()
     sendMessage({ message })
-    $('#backdrop').hide()
-    $('#modal').hide()
   })
 })

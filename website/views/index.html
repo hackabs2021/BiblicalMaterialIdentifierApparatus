@@ -22,24 +22,23 @@
       </h1>
     </div>
 
-    <div id="message_box" class="message_box"></div>
-
-    <div class="backdrop" id="backdrop"></div>
-    <div class="modal" id="modal">
-      <div class="modal__controls">
-        <i class="modal__close" id="modal_close">X</i>
-      </div>
-      <form class="chat_form" id="chat_form">
-        <textarea
-          id="textarea"
-          cols="10"
-          placeholder="Start typing your message here.."
-        ></textarea>
-        <button type="submit" class="form__send__btn">Send</button>
-      </form>
-    </div>
-
     <div class="chatbot">
+      <div class="modal" id="modal">
+        <div class="modal__controls">
+          <i class="modal__close" id="modal_close">X</i>
+        </div>
+        <div id="message_box" class="message_box"></div>
+
+        <form class="chat_form" id="chat_form">
+          <textarea
+            id="textarea"
+            cols="10"
+            placeholder="Start typing your message here.."
+          ></textarea>
+          <button type="submit" class="form__send__btn">Send</button>
+        </form>
+      </div>
+
       <button class="chatNow-btn" id="chatNow">Chat Now</button>
     </div>
   </body>
