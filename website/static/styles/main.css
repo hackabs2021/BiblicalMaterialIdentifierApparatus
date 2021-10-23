@@ -2,6 +2,7 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: sans-serif;
 }
 
 .heading {
@@ -23,7 +24,6 @@ body, html {
   left: 0;
   right: 0;
   padding: 12px;
-  border: 1px solid red;
   display: flex;
   justify-content: flex-end;
 }
@@ -39,7 +39,7 @@ body, html {
   box-shadow: 1px 1px solid grey;
 }
 
-.chatNow-btn:hover {
+.chatNow-btn:hover, .form__send__btn:hover {
   transition: 0.3s;
   background: white;
   border: 2px solid green;
@@ -48,7 +48,7 @@ body, html {
 }
 
 .backdrop {
-  display: block;
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -56,5 +56,62 @@ body, html {
   left: 0;
   background: #95959594;
   z-index: 1;
-
 }
+
+
+
+
+.modal {
+  position: absolute;
+  width: 80%;
+  background: white;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 30%;
+  padding: 20px;
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+}
+
+.chat_form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chat_form textarea {
+  width: 100%;
+  padding: 12px;
+  background: #d3d3d3;
+  border: none;
+  resize: vertical;
+}
+
+.form__send__btn {
+  padding: 12px;
+  margin-top: 20px;
+  width: 120px;
+  background: green;
+  border: 2px solid green;
+  border-radius: 5px;
+  color: white;
+}
+
+
+.modal__controls {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 0;
+}
+
+.modal__close {
+  color: #df5b5b;
+}
+
+.modal__close:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  color: #ff0000;
+}
+
