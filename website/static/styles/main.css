@@ -1,0 +1,48 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.heading {
+  width: 100%;
+  padding: 12px;
+}
+
+.main-heading {
+  width: 100%;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+
+.chatbot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  border: 1px solid red;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chatNow-btn {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background: green;
+  color: white;
+  font-size: 18px;
+  border: 2px solid green;
+  box-shadow: 1px 1px solid grey;
+}
+
+.chatNow-btn:hover {
+  transition: 0.3s;
+  background: white;
+  border: 2px solid green;
+  color: green;
+  cursor: pointer;
+}
