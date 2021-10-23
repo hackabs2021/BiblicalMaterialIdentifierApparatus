@@ -8,8 +8,23 @@ Innovative chatbot for bible engagement. Helps to connect those interested in th
 
 <br/>
 
-### Install anaconda
-Download from [anaconda.com](https://www.anaconda.com/products/individual#Downloads)
+# TEMP
+- Add *Install PyCharm*
+- Add *Anaconda* libs
+
+### Install *Anaconda*
+Download from [anaconda.com](https://www.anaconda.com/products/individual#Downloads) <br/>
+(If you are downloading it you will need to create an account) <br/>
+(Keep in mind you will need to verify your email as well) <br/>
+(It will take a while)
+
+#### For *PyCharm*
+Open *PyCharm* then go to the bottom right hand corner were it says something along the lines of "Python *\[version\]* (*\[folder\]*)" <br/>
+Click on it and then select "*Add Interpreter...*" <br/>
+Select the "*Conda Environment*" tab <br/>
+Change "*Python version*" to *3.8* <br/>
+And then select "*Make avaliable to all projects*" <br/>
+Then click "*ok*"
 
 <br/>
 
