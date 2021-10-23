@@ -1,0 +1,158 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.modal-heading {
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  color: white;
+}
+
+.chatbot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chatNow-btn {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background: #4086e1;
+  color: white;
+  font-size: 18px;
+  border: 2px solid #4086e1;
+  box-shadow: 1px 1px solid grey;
+}
+
+.chatNow-btn:hover,
+.form__send__btn:hover {
+  transition: 0.3s;
+  background: white;
+  border: 2px solid #4086e1;
+  color: #4086e1;
+  cursor: pointer;
+}
+
+.backdrop {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #95959594;
+  z-index: 1;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  width: 40%;
+  max-width: 350px;
+  background: white;
+  right: 8px;
+  margin: auto;
+  bottom: 100%;
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+  z-index: 2;
+  /* display: flex; */
+}
+
+.chat_form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #d3d3d3;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.chat_form textarea {
+  width: 75%;
+  background: #d3d3d3;
+  border: none;
+  resize: none;
+  height: 30px;
+  outline: none;
+}
+
+.chat_form textarea:active {
+  outline: none;
+  border: none;
+}
+
+.form__send__btn {
+  width: 50px;
+  background: #6a6a6a;
+  border: 2px solid #6a6a6a;
+  color: white;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.modal__controls {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
+  background: #7474fb;
+  border-radius: 5px 5px 0 0;
+}
+
+.modal__close {
+  color: #ffffff;
+}
+
+.modal__close:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  color: #9d9d9d;
+}
+
+.message_box {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-radius: 5px;
+  min-height: 200px;
+  align-items: flex-start;
+}
+
+.single_message {
+  background-color: #253c70;
+  color: white;
+  width: 51%;
+  padding: 12px;
+  border-radius: 5px;
+  /* align-self: flex-start; */
+  font-size: 12px;
+  margin-left: auto;
+  margin-top: 0px;
+}
+
+.single_message_bot {
+  margin-right: auto;
+  margin-left: 0;
+  background-color: #7292ed;
+}

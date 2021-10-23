@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Biblical Material Identifier Apparatus</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/main.css') }}"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </head>
+  <body>
+    <div class="chatbot">
+      <div class="modal" id="modal">
+        <div class="modal__controls">
+          <p class="modal-heading">Biblical Material Identifier Apparatus</p>
+          <i class="modal__close" id="modal_close">X</i>
+        </div>
+        <div id="message_box" class="message_box"></div>
 
-</body>
+        <form class="chat_form" id="chat_form">
+          <textarea
+            id="textarea"
+            cols="10"
+            placeholder="Start typing your message here.."
+          ></textarea>
+          <button type="submit" class="form__send__btn">Send</button>
+        </form>
+      </div>
+
+      <button class="chatNow-btn" id="chatNow">Chat</button>
+    </div>
+  </body>
 </html>
