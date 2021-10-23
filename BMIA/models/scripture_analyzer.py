@@ -19,9 +19,10 @@ import pandas as pd
 
 class ScriptureAnalyzer():
 
-    def __init(self):
+    def __init(self, word=None):
         print("do nothing")
         self.dictionary = None
+        self.word = word
         self.text_data = []
 
     def tokenize(self, text):
@@ -59,7 +60,9 @@ class ScriptureAnalyzer():
     def put_in_text_data(self):
         print("prepare text for lda and put in dictionary holder")
         self.text_data = []
-        with open('G:\Repositories\BiblicalMaterialIdentifierApparatus\website\covid_broad-match_us_2021-10-23.csv') as f:
+        CURR_DIR = os.path.dirname(os.path.realpath(__file__))
+        print(CURR_DIR)
+        with open(CURR_DIR + '\covid_broad-match_us_2021-10-23.csv') as f:
             for line in f:
                 if random.random() > .99:
                     splitline = line.split(',')[0]
@@ -83,7 +86,11 @@ class ScriptureAnalyzer():
         for topic in topics:
             print(topic)
         print("***********************")
-        new_doc = "I'm concerned about not seeing my loved ones because of covid"
+        if self.word == None:
+            new_doc = "I'm concerned about not seeing my loved ones because of covid"
+        else:
+            new_doc = self.word
+
         new_doc = self.prepare_text_for_lda(new_doc)
         new_doc_bow = dictionary.doc2bow(new_doc)
         print(new_doc_bow)
@@ -91,9 +98,6 @@ class ScriptureAnalyzer():
 
 
 if __name__ == '__main__':
-    CURR_DIR = os.path.dirname(os.path.realpath(__file__))
-    print(CURR_DIR)
-    print(os.listdir())
     scripture = ScriptureAnalyzer()
     scripture.put_in_text_data()
     scripture.find_5_topics()
