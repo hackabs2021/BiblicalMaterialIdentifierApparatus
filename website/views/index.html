@@ -13,10 +13,7 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script
-      type="script"
-      src="{{ url_for('static', filename='js/main.js') }}"
-    ></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </head>
   <body>
     <div class="heading">
@@ -40,7 +37,7 @@
     </div>
 
     <div class="chatbot">
-      <button class="chatNow-btn">Chat Now</button>
+      <button class="chatNow-btn" id="chatNow">Chat Now</button>
     </div>
   </body>
 </html>
