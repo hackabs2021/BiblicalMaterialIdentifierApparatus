@@ -4,6 +4,7 @@ let welcomedUser = false
 function sendMessage(payload) {
   $.post(messageURL, payload, function (data, status) {})
   addMessage(payload.message)
+  $('#textarea').val('')
 }
 
 function addMessage(message, isBot) {
@@ -13,6 +14,15 @@ function addMessage(message, isBot) {
 }
 
 $.when($.ready).then(function () {
+  // On enter event
+  $('#textarea').keydown(function (event) {
+    // if 'Enter' is clicked
+    if (event.which === 13) {
+      let message = $('#textarea').val()
+      sendMessage({ message })
+    }
+  })
+
   $('#modal_close').bind('click', function () {
     $('#modal').hide()
     $('#chatNow').show()
