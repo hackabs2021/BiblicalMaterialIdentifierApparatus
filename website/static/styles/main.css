@@ -65,6 +65,7 @@ html {
   display: none;
   position: absolute;
   width: 40%;
+  max-width: 350px;
   background: white;
   right: 8px;
   margin: auto;
