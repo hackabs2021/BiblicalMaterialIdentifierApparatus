@@ -22,7 +22,7 @@ class ScriptureAnalyzer():
     def __init(self, word=None):
         print("do nothing")
         self.dictionary = None
-        self.word = word
+        #self.word = word
         self.text_data = []
 
     def tokenize(self, text):
@@ -86,11 +86,8 @@ class ScriptureAnalyzer():
         for topic in topics:
             print(topic)
         print("***********************")
-        if self.word == None:
-            new_doc = "I'm concerned about not seeing my loved ones because of covid"
-        else:
-            new_doc = self.word
 
+        new_doc = "I'm lonely in lockdown"
         new_doc = self.prepare_text_for_lda(new_doc)
         new_doc_bow = dictionary.doc2bow(new_doc)
         print(new_doc_bow)
