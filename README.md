@@ -17,11 +17,13 @@ Download from [anaconda.com](https://www.anaconda.com/products/individual#Downlo
 
 ### Navigate to the repository and create the anaconda virtual environment
 (PATH_TO_REPOSITORY/BiblicalMaterialIdentifierApparatus/) <br/>
-To create the virtual environment, run this command in your terminal
+To create the virtual environment, run these commands in your terminal
 ```bash
+%userprofile%\anaconda3\Scripts\activate.bat
+conda deactivate
 conda create --name BMIA
 ```
-It may take a bit of time for the libraries to install <br/><br/>
+It will prompt you to "*Proceed*" type "y" then {enter}<br/><br/>
 ***TIP:*** In **Windows** you can navigate in file explorer and then click on the *URI* (The path) and type `cmd` and hit {enter} to open a terminal window in the current directory
 
 <br/>
@@ -31,6 +33,7 @@ Run this command in your terminal to install the libraries
 ```bash
 conda env update --name BMIA --file environment.yml
 ```
+It may take a bit of time for the libraries to install
 
 <br/>
 
