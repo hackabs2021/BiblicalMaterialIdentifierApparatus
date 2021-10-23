@@ -8,6 +8,11 @@ Innovative chatbot for bible engagement. Helps to connect those interested in th
 
 <br/>
 
+### Install anaconda
+Download from [anaconda.com](https://www.anaconda.com/products/individual#Downloads)
+
+<br/>
+
 ### Make sure you have *python 3.10*
 You can check by opening your terminal and running the command
 ```bash
