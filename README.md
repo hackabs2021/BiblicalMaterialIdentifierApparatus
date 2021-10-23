@@ -1,6 +1,8 @@
 # BiblicalMaterialIdentifierApparatus
 Innovative chatbot for bible engagement. Helps to connect those interested in the bible with topics returned from bible APIs. 
 
+<br/><br/>
+
 # How to run
 ### First download the repository
 
@@ -38,6 +40,8 @@ To create the virtual environment run this command in your terminal
 ```bash
 python -m venv website
 ```
+
+<br/>
 
 ### Activate the virtual enviroment
 #### Windows
