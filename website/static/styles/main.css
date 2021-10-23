@@ -114,3 +114,27 @@ html {
   cursor: pointer;
   color: #ff0000;
 }
+
+.message_box {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+}
+
+.single_message {
+  background-color: #ff9235;
+  color: white;
+  width: 51%;
+  padding: 12px;
+  border-radius: 5px;
+  /* align-self: flex-start; */
+}
+
+.single_message_bot {
+  margin-left: auto;
+  background-color: #8f6d50;
+}
