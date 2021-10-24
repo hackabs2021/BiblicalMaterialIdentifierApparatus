@@ -16,13 +16,12 @@ from gensim import corpora
 import pandas as pd
 
 
-
-class ScriptureAnalyzer():
+class ScriptureAnalyzer:
 
     def __init(self, word=None):
         print("do nothing")
         self.dictionary = None
-        #self.word = word
+        # self.word = word
         self.text_data = []
 
     def tokenize(self, text):
@@ -62,13 +61,15 @@ class ScriptureAnalyzer():
         self.text_data = []
         CURR_DIR = os.path.dirname(os.path.realpath(__file__))
         print(CURR_DIR)
-        with open(CURR_DIR + '\covid_broad-match_us_2021-10-23.csv') as f:
+        with open(CURR_DIR + '\\covid_broad-match_us_2021-10-23.csv') as f:
             for line in f:
                 if random.random() > .99:
                     splitline = line.split(',')[0]
                     tokens = self.prepare_text_for_lda(splitline)
                     print(tokens)
                     self.text_data.append(tokens)
+        # df = pd.read_csv(r'uncertainty_phrase-match_us_2021-10-24.csv')
+        # df['clean_keyword'] = df['keyword'].apply(lambda x: nltk.tokenize.word_tokenize(x))
 
     def find_5_topics(self):
         print("find 5 topics")
@@ -87,7 +88,7 @@ class ScriptureAnalyzer():
             print(topic)
         print("***********************")
 
-        new_doc = "I'm lonely in lockdown"
+        new_doc = "disease"
         new_doc = self.prepare_text_for_lda(new_doc)
         new_doc_bow = dictionary.doc2bow(new_doc)
         print(new_doc_bow)

@@ -90,3 +90,7 @@ class scripture_api:
         response = requests.get(url=URL, headers=HEADERS).json()
 
         return response["data"]["verses"] # Return verses
+
+if __name__ == "__main__":
+    api_test = scripture_api()
+
