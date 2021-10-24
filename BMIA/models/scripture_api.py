@@ -4,9 +4,11 @@ class scripture_api:
     # Constructor
     def __init__(self):
         self.api_key = ""
+        self.bible_id = ""
+        self.book_codes = {}
 
     # Tests and sets api_key
-    def authenticate(self, api_key):
+    def authenticate(self, api_key: str) -> None:
         # Request
         URL = "https://api.scripture.api.bible/v1/bibles"
         HEADERS = {'api-key': api_key}
@@ -20,20 +22,21 @@ class scripture_api:
         else:
             raise Exception(f"Error while authenticating, Unknown status code '{status_code}'!")
 
-    # Check if API has api_key
-    def __check_key(self):
+    # Check if class has api_key and bible_id
+    def __check_values(self) -> bool:
         if (self.api_key == ""):
             raise ValueError("Error, API key not found! (Make sure you have authenticated the API)")
+        elif (self.bible_id == ""):
+            raise ValueError("Error, Bible ID not found! (Make sure you have set the Bible)")
         else:
-            print()
             return True
 
     # Lists bibles
-    #   [language_code] Filters bibles by language
+    #   [language_code] Filters Bibles by language (English is "eng")
     #
-    #   Returns: Array of bibles
-    def list_bibles(self, language_code = None):
-        self.__check_key()
+    #   Returns: Array of Bibles
+    def list_bibles(self, language_code: str = None):
+        self.__check_values()
 
         # Set language
         language = ""
@@ -49,34 +52,41 @@ class scripture_api:
         return requests.get(url=URL, headers=HEADERS).json() # Return bibles
 
     # Lists books of the specified bible
-    #   [bible_id] The bible you want the books from
-    #
     #   Returns: Array of books
-    def list_books(self, bible_id):
-        self.__check_key()
+    def list_books(self):
+        self.__check_values()
 
         # Request
-        URL = f"https://api.scripture.api.bible/v1/bibles/{bible_id}/books"
+        URL = f"https://api.scripture.api.bible/v1/bibles/{self.bible_id}/books"
         HEADERS = {'api-key': self.api_key}
         return requests.get(url=URL, headers=HEADERS).json() # Return books
 
+    # Changes bible
+    #   [bible_id] Id of the Bible you want to select (https://docs.api.bible/guides/bibles)
+    def set_bible(self, bible_id: str) -> None:
+        self.bible_id = bible_id # Update bible_id
+
+        response = self.list_books() # Retrieve books
+
+        # Check that response was successful
+        if "data" not in response:
+            raise ValueError(f"Error, Invalid Bible ID! ('{bible_id}')")
+
+        self.book_codes = {} # Clear book_codes
+
+        # Update book codes
+        for book in response["data"]:
+            self.book_codes[book["name"]] = book["abbreviation"]
+
     # Searches bible for verses that match query
-    #   [bible_id]: The bible you want to search in
+    #   [bible_id]: The Bible you want to search in
     #   [query]: Wildcards are '?' for single a character and '*' for multiple characters
     #   [limit]: Between 1-100
     #   [fuzziness]: Accounts for misspellings. Options are 'AUTO', '0', '1' and '2'
     #
     #   Returns: Array of verses
-    def count(self, bible_id, query, fuzziness = "AUTO"):
-        URL = f"https://api.scripture.api.bible/v1/bibles/{bible_id}/search?query={query}&limit=100&fuzziness={fuzziness}"
-        HEADERS = {'api-key': self.api_key}
-        response = requests.get(url=URL, headers=HEADERS).json()
-        count = len(response["data"]["verses"])
-        print(count)
-        return count
-
-    def search(self, bible_id, query, limit = 10, fuzziness = "AUTO"):
-        self.__check_key()
+    def search(self, query: str, limit: int = 10, fuzziness: str = "AUTO"):
+        self.__check_values()
 
         # Set query
         if (query == ""):
@@ -93,14 +103,84 @@ class scripture_api:
             raise ValueError(f"Error, Invalid fuzziness value! ('{fuzziness}') (Options are 'AUTO', '0', '1' and '2')")
 
         # Request
-
-        URL = f"https://api.scripture.api.bible/v1/bibles/{bible_id}/search?query={query}&limit={limit}&fuzziness={fuzziness}"
+        URL = f"https://api.scripture.api.bible/v1/bibles/{self.bible_id}/search?query={query}&limit={limit}&fuzziness={fuzziness}"
         HEADERS = {'api-key': self.api_key}
         response = requests.get(url=URL, headers=HEADERS).json()
+
+        # Response was unsuccessful
+        if "data" not in response:
+            return None
+
         return response["data"]["verses"] # Return verses
 
-if __name__ == "__main__":
+    # Lists verses from chapter
+    #   [book] Book of the Bible
+    #   [chapter] Chapter to list verses from
+    #
+    #   Returns: Array of verses
+    def list_verses(self, book: str, chapter: int):
+        self.__check_values()
+
+        # Validate book
+        if book not in self.book_codes:
+            raise ValueError(f"Error, Book not found! (\"{book}\")")
+
+        # Request
+        URL = f"https://api.scripture.api.bible/v1/bibles/{self.bible_id}/chapters/{self.book_codes[book]}.{chapter}/verses"
+        HEADERS = {'api-key': self.api_key}
+        return requests.get(url=URL, headers=HEADERS).json() # Return books
+
+    # Gets verse from Bible
+    #   [book] Book of the Bible
+    #   [chapter] Chapter verse is from
+    #   [verse] Verse
+    #
+    #   Returns: The verse
+    def get_verse(self, book: str, chapter: int, verse: int):
+        self.__check_values()
+
+        # Validate book
+        if book not in self.book_codes:
+            raise ValueError(f"Error, Book not found! (\"{book}\")")
+
+        # Request
+        URL = f"https://api.scripture.api.bible/v1/bibles/{self.bible_id}/verses/{self.book_codes[book]}.{chapter}.{verse}?content-type=json"
+        HEADERS = {'api-key': self.api_key}
+        return requests.get(url=URL, headers=HEADERS).json()  # Return books
+
+# For testing
+def main():
+    CURRENT_DIRECTORY = os.path.dirname((os.path.realpath(__file__)))
+
+    # Retrieve API key
+    api_key = ""
+    with open(CURRENT_DIRECTORY + "/api_key.txt", "r") as api_key_file:
+        lines =  api_key_file.readlines() # Read file
+
+        # Validate file content
+        if (len(lines) == 0):
+            raise Exception(f"Error, API key not found! (\"{os.getcwd()}/api_key.txt\")")
+        elif (len(lines) > 1):
+            if (lines[1] != ""):
+                raise  Exception(f"Error, API key cannot be across multiple lines! (\"{os.getcwd()}/api_key.txt\")")
+
+        api_key = lines[0] # Access API key
+    print(f"API key found! ('{api_key}')\n") # TEMP - Debug
+
+
+    # Setup
     api_test = scripture_api()
-    bible_id = '65eec8e0b60e656b-01'
-    response = api_test.search(bible_id, "Jesus wept", limit=3, fuzziness = "0")
+    api_test.authenticate(api_key)
+    api_test.set_bible('65eec8e0b60e656b-01') # Free Bible Version
+
+    ## Tests
+    # response = api_test.list_bibles("eng")["data"]
+    # response = api_test.list_books()["data"]
+    # response = api_test.search("worry", limit = 3, fuzziness = "0")
+    # response = api_test.list_verses("John", 11)["data"]
+    response = api_test.get_verse("John", 11, 35)["data"]["content"][0]["items"][1]
+
     print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
+
+if __name__ == '__main__':
+    main()
