@@ -66,20 +66,20 @@ class ScriptureAnalyzer:
                 if random.random() > .99:
                     splitline = line.split(',')[0]
                     tokens = self.prepare_text_for_lda(splitline)
-                    print(tokens)
+                    #print(tokens)
                     self.text_data.append(tokens)
         # df = pd.read_csv(r'uncertainty_phrase-match_us_2021-10-24.csv')
         # df['clean_keyword'] = df['keyword'].apply(lambda x: nltk.tokenize.word_tokenize(x))
 
-    def find_5_topics(self):
-        print("find 5 topics")
+    def find_10_topics(self):
+        print("find 10 topics")
         dictionary = corpora.Dictionary(self.text_data)
         corpus = [dictionary.doc2bow(text) for text in self.text_data]
         import pickle
         pickle.dump(corpus, open('corpus.pkl', 'wb'))
         dictionary.save('dictionary.gensim')
         import gensim
-        NUM_TOPICS = 5
+        NUM_TOPICS = 10
         ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=NUM_TOPICS, id2word=dictionary, passes=15)
         ldamodel.save('model5.gensim')
         topics = ldamodel.print_topics(num_words=4)
@@ -88,14 +88,14 @@ class ScriptureAnalyzer:
             print(topic)
         print("***********************")
 
-        new_doc = "disease"
-        new_doc = self.prepare_text_for_lda(new_doc)
-        new_doc_bow = dictionary.doc2bow(new_doc)
-        print(new_doc_bow)
-        print(ldamodel.get_document_topics(new_doc_bow))
+        #new_doc = "disease"
+        #new_doc = self.prepare_text_for_lda(new_doc)
+        #new_doc_bow = dictionary.doc2bow(new_doc)
+        #print(new_doc_bow)
+        #print(ldamodel.get_document_topics(new_doc_bow))
 
 
 if __name__ == '__main__':
     scripture = ScriptureAnalyzer()
     scripture.put_in_text_data()
-    scripture.find_5_topics()
+    scripture.find_10_topics()

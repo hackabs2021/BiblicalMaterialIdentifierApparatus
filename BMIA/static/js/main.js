@@ -11,7 +11,10 @@ function sendMessage(payload) {
   addMessage(payload.message)
   clearTextField()
   $.post(messageURL, payload, function (data) {
-    addMessage(data.response, true)
+    console.log(data);
+    for(i=0; i<data.count ; i++) {
+        addBotMessage(data.response[i], true)
+    }
   })
 }
 
@@ -22,6 +25,21 @@ function addMessage(message, isBot) {
     : 'message_container'
   let txt = $('<p></p>').text(message).addClass(classes)
   let sender = $('<i></i>').text(isBot ? 'Bot' : 'You')
+  let container = $('<div></div>')
+    .html([sender, txt])
+    .addClass(containerClasses)
+  $('#message_box').append(container)
+}
+
+function addBotMessage(verse) {
+  let message = verse.text
+  console.log(message)
+  let ref = "<em>" + verse.reference + "</em><br>"
+  let classes = 'single_message single_message_bot'
+  let containerClasses = 'message_container message_container_bot'
+  let txt = $('<p></p>').html(ref).addClass(classes)
+  txt.append($("<p>" + message + "</p>"))
+  let sender = $('<i></i>').text('Bot')
   let container = $('<div></div>')
     .html([sender, txt])
     .addClass(containerClasses)

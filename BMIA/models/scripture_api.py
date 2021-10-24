@@ -67,6 +67,14 @@ class scripture_api:
     #   [fuzziness]: Accounts for misspellings. Options are 'AUTO', '0', '1' and '2'
     #
     #   Returns: Array of verses
+    def count(self, bible_id, query, fuzziness = "AUTO"):
+        URL = f"https://api.scripture.api.bible/v1/bibles/{bible_id}/search?query={query}&limit=100&fuzziness={fuzziness}"
+        HEADERS = {'api-key': self.api_key}
+        response = requests.get(url=URL, headers=HEADERS).json()
+        count = len(response["data"]["verses"])
+        print(count)
+        return count
+
     def search(self, bible_id, query, limit = 10, fuzziness = "AUTO"):
         self.__check_key()
 
@@ -85,12 +93,14 @@ class scripture_api:
             raise ValueError(f"Error, Invalid fuzziness value! ('{fuzziness}') (Options are 'AUTO', '0', '1' and '2')")
 
         # Request
+
         URL = f"https://api.scripture.api.bible/v1/bibles/{bible_id}/search?query={query}&limit={limit}&fuzziness={fuzziness}"
         HEADERS = {'api-key': self.api_key}
         response = requests.get(url=URL, headers=HEADERS).json()
-
         return response["data"]["verses"] # Return verses
 
 if __name__ == "__main__":
     api_test = scripture_api()
-
+    bible_id = '65eec8e0b60e656b-01'
+    response = api_test.search(bible_id, "Jesus wept", limit=3, fuzziness = "0")
+    print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
