@@ -50,14 +50,14 @@ Run this command in your anaconda virtual environment
 ```bash
 python -m spacy download en
 ```
-***TIP:*** In **Windows** you can you can clear the terminal using the command `cls`
+***TIP:*** In **Windows** you can clear the terminal using the command `cls`
 
 <br/>
 
 ### Starting the application
 Just run this command in your terminal
 ```bash
-py BMIA/app.py
+python BMIA/app.py
 ```
 
 <br/><br/><br/>
