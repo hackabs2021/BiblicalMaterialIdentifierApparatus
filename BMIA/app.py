@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder='views', static_folder=STATIC_DIR)
 def index():
     return render_template('index.html')
 
-@app.route('/message')
+@app.route('/message',  methods=['POST'])
 def message():
     d = "Result from api"
     return jsonify(d)
