@@ -89,5 +89,4 @@ Open *PyCharm* then go to the bottom right hand corner were it says something al
 Click on it and then select "*Add Interpreter...*" <br/>
 Select the "*Conda Environment*" tab <br/>
 Change "*Python version*" to *3.8* <br/>
-And then select "*Make avaliable to all projects*" <br/>
 Then click "*ok*"
