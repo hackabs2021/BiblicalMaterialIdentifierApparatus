@@ -1,6 +1,7 @@
-environment\
+environment/
 .idea
 bin
+/BMIA/models/api_key.txt
 
 
 # Imported gitignore
