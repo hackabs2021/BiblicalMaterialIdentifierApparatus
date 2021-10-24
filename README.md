@@ -57,7 +57,7 @@ python -m spacy download en
 ### Starting the application
 Just run this command in your terminal
 ```bash
-py app.py
+py BMIA/app.py
 ```
 
 <br/><br/><br/>
