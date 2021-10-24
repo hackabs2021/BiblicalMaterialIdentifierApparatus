@@ -1,9 +1,15 @@
 let messageURL = 'http://127.0.0.1:5000/message'
 let welcomedUser = false
 
+function clearTextField() {
+  setTimeout(() => {
+    $('#textarea').val('')
+  }, 300)
+}
+
 function sendMessage(payload) {
   addMessage(payload.message)
-  $('#textarea').val('')
+  clearTextField()
   $.post(messageURL, payload, function (data) {
     addMessage(data.response, true)
   })
