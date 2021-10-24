@@ -45,6 +45,15 @@ conda activate BMIA
 
 <br/>
 
+### Install final library
+Run this command in your anaconda virtual environment
+```bash
+python -m spacy download en
+```
+***TIP:*** In **Windows** you can you can clear the terminal using the command `cls`
+
+<br/>
+
 ### Starting the application
 Just run this command in your terminal
 ```bash
