@@ -1,7 +1,6 @@
 name: G:\Repositories\BiblicalMaterialIdentifierApparatus\environment
 channels:
   - conda-forge
-  - anaconda
   - defaults
 dependencies:
   - aiohttp=3.7.4.post0=py38h2bbff1b_2
@@ -12,14 +11,15 @@ dependencies:
   - botocore=1.21.41=pyhd3eb1b0_1
   - bottleneck=1.3.2=py38h2a96729_1
   - brotlipy=0.7.0=py38h2bbff1b_1003
-  - ca-certificates=2020.10.14=0
+  - ca-certificates=2021.9.30=haa95532_1
   - cachetools=4.2.2=pyhd3eb1b0_0
   - catalogue=1.0.0=py38_1
-  - certifi=2020.6.20=py38_0
+  - certifi=2021.10.8=py38haa95532_0
   - cffi=1.14.6=py38h2bbff1b_0
   - chardet=4.0.0=py38haa95532_1003
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
   - click=8.0.1=pyhd3eb1b0_0
+  - colorama=0.4.4=pyhd3eb1b0_0
   - coverage=5.5=py38h2bbff1b_2
   - cryptography=3.4.8=py38h71e12ea_0
   - cymem=2.0.5=py38hd77b12b_0
@@ -61,7 +61,7 @@ dependencies:
   - numexpr=2.7.3=py38hb80d3ca_1
   - numpy=1.21.2=py38hfca59bb_0
   - numpy-base=1.21.2=py38h0829f74_0
-  - openssl=1.1.1l=h8ffe710_0
+  - openssl=1.1.1l=h2bbff1b_0
   - pandas=1.3.3=py38h6214cd6_0
   - pip=21.0.1=py38haa95532_0
   - plac=1.1.0=py38_1
