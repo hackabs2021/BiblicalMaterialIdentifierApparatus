@@ -17,8 +17,15 @@ function sendMessage(payload) {
 
 function addMessage(message, isBot) {
   let classes = isBot ? 'single_message single_message_bot' : 'single_message'
+  let containerClasses = isBot
+    ? 'message_container message_container_bot'
+    : 'message_container'
   let txt = $('<p></p>').text(message).addClass(classes)
-  $('#message_box').append(txt)
+  let sender = $('<i></i>').text(isBot ? 'Bot' : 'You')
+  let container = $('<div></div>')
+    .html([sender, txt])
+    .addClass(containerClasses)
+  $('#message_box').append(container)
 }
 
 $.when($.ready).then(function () {

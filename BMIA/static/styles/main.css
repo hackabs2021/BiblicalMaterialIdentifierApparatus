@@ -139,20 +139,27 @@ html {
   align-items: flex-start;
 }
 
+.message_container {
+   margin-left: auto;
+   width: 51%;
+}
+
+.message_container_bot {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+
 .single_message {
   background-color: #253c70;
   color: white;
-  width: 51%;
   padding: 12px;
   border-radius: 5px;
-  /* align-self: flex-start; */
   font-size: 12px;
-  margin-left: auto;
   margin-top: 0px;
 }
 
 .single_message_bot {
-  margin-right: auto;
-  margin-left: 0;
+
   background-color: #7292ed;
 }
