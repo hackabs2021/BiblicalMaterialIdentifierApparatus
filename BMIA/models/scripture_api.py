@@ -1,6 +1,55 @@
 import os, requests, json
 
 class scripture_api:
+    global suffixes
+    suffixes = [
+        "able",
+        "age",
+        "al",
+        "ance",
+        "ate",
+        "dom",
+        "ed",
+        "ee",
+        "en",
+        "ence",
+        "er",
+        "ese",
+        "ful",
+        "hood",
+        "i",
+        "ian",
+        "ible",
+        "ic",
+        "ify",
+        "ing",
+        "ion",
+        "ise",
+        "ish",
+        "ism",
+        "ist",
+        "ity",
+        "ive",
+        "ize",
+        "less",
+        "ly",
+        "ment",
+        "ness",
+        "or",
+        "ous",
+        "ry",
+        "s",
+        "ship",
+        "sion",
+        "tion",
+        "ty",
+        "ward",
+        "wards",
+        "wise",
+        "xion",
+        "y"
+    ]
+
     # Constructor
     def __init__(self):
         self.api_key = ""
@@ -148,6 +197,15 @@ class scripture_api:
         HEADERS = {'api-key': self.api_key}
         return requests.get(url=URL, headers=HEADERS).json()  # Return books
 
+    # Replaces suffix with wildcard ('*')
+    #   [word] Word to remove suffix from
+    #
+    #   Returns: Word with suffix replaced
+    def replace_suffix_with_wildcard(word:str) -> str:
+        for suffix in suffixes:
+            if (word.endswith(suffix)):
+                return f"{word[:-len(suffix)]}*"
+
 # For testing
 def main():
     CURRENT_DIRECTORY = os.path.dirname((os.path.realpath(__file__)))
@@ -180,6 +238,7 @@ def main():
     # response = api_test.list_verses("John", 11)["data"]
     response = api_test.get_verse("John", 11, 35)["data"]["content"][0]["items"][1]
 
+    # print(scripture_api.replace_suffix_with_wildcard("Testing"))
     print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
 
 if __name__ == '__main__':
