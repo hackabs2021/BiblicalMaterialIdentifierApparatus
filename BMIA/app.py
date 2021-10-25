@@ -55,8 +55,14 @@ def message():
     processed_keywords = []
     for keyword in keywords:
         processed_keywords.append(replace_suffix_with_wildcard(keyword))
+    query = " ".join(processed_keywords)
+    print(f"Query: \"{query}\"") # TEMP - Debug
 
-    response = scripture.search(" ".join(processed_keywords), 3, "0") # Search
+    # Return if query empty
+    if (query == ""):
+        return {'count': 0, 'response': ""}
+
+    response = scripture.search(query, 3, "0") # Search
 
     print(f"Response:\n{json.dumps(response, indent = 4, sort_keys = True)}") # TEMP - Debug
 

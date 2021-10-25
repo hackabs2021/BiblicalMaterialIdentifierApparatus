@@ -161,7 +161,7 @@ def replace_suffix_with_wildcard(word:str) -> str:
         "al",
         "ance",
         "ate",
-        "dom",
+        "ied",
         "ed",
         "ee",
         "en",
@@ -190,7 +190,6 @@ def replace_suffix_with_wildcard(word:str) -> str:
         "ness",
         "or",
         "ous",
-        "ry",
         "s",
         "ship",
         "sion",
@@ -244,11 +243,11 @@ def main():
     ## Tests
     # response = api_test.list_bibles("eng")["data"]
     # response = api_test.list_books()["data"]
-    # response = api_test.search("worry", 3, "0")
+    # response = api_test.search("John", 3, "0")
     # response = api_test.list_verses("John", 11)["data"]
     # response = api_test.get_verse("John", 11, 35)["data"]["content"][0]["items"][1]
 
-    print(scripture_api.replace_suffix_with_wildcard("Peace"))
+    print(replace_suffix_with_wildcard("Peaceful"))
     # print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
 
 
