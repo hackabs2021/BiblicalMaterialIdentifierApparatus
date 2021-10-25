@@ -1,55 +1,7 @@
 import os, requests, json
 
-class scripture_api:
-    global suffixes
-    suffixes = [
-        "able",
-        "age",
-        "al",
-        "ance",
-        "ate",
-        "dom",
-        "ed",
-        "ee",
-        "en",
-        "ence",
-        "er",
-        "ese",
-        "ful",
-        "hood",
-        "i",
-        "ian",
-        "ible",
-        "ic",
-        "ify",
-        "ing",
-        "ion",
-        "ise",
-        "ish",
-        "ism",
-        "ist",
-        "ity",
-        "ive",
-        "ize",
-        "less",
-        "ly",
-        "ment",
-        "ness",
-        "or",
-        "ous",
-        "ry",
-        "s",
-        "ship",
-        "sion",
-        "tion",
-        "ty",
-        "ward",
-        "wards",
-        "wise",
-        "xion",
-        "y"
-    ]
 
+class scripture_api:
     # Constructor
     def __init__(self):
         self.api_key = ""
@@ -197,20 +149,70 @@ class scripture_api:
         HEADERS = {'api-key': self.api_key}
         return requests.get(url=URL, headers=HEADERS).json()  # Return books
 
-    # Replaces suffix with wildcard ('*')
-    #   [word] Word to remove suffix from
-    #
-    #   Returns: Word with suffix replaced
-    def replace_suffix_with_wildcard(word:str) -> str:
-        # Find and replace suffix
-        for suffix in suffixes:
-            if (word.endswith(suffix)):
-                return f"{word[:-len(suffix)]}*"
 
-        return f"{word}*" # If no suffix just add wildcard
+# Replaces suffix with wildcard ('*')
+#   [word] Word to remove suffix from
+#
+#   Returns: Word with suffix replaced
+def replace_suffix_with_wildcard(word:str) -> str:
+    suffixes = [
+        "able",
+        "age",
+        "al",
+        "ance",
+        "ate",
+        "dom",
+        "ed",
+        "ee",
+        "en",
+        "ence",
+        "er",
+        "ese",
+        "ful",
+        "hood",
+        "i",
+        "ian",
+        "ible",
+        "ic",
+        "ify",
+        "ing",
+        "ion",
+        "ise",
+        "ish",
+        "ism",
+        "ist",
+        "ity",
+        "ive",
+        "ize",
+        "less",
+        "ly",
+        "ment",
+        "ness",
+        "or",
+        "ous",
+        "ry",
+        "s",
+        "ship",
+        "sion",
+        "tion",
+        "ty",
+        "ward",
+        "wards",
+        "wise",
+        "xion",
+        "y"
+    ]
+
+    # Find and replace suffix
+    for suffix in suffixes:
+        if (word.endswith(suffix)):
+            return f"{word[:-len(suffix)]}*"
+
+    return f"{word}*" # If no suffix just add wildcard
 
 # Gets API key from file
-def retrieve_api_key():
+#   Returns: API key
+def retrieve_api_key() -> str:
     CURRENT_DIRECTORY = os.path.dirname((os.path.realpath(__file__)))
 
     api_key = ""
@@ -226,7 +228,7 @@ def retrieve_api_key():
 
         api_key = lines[0] # Access API key
 
-    print(f"API key found! ('{api_key}')\n") # TEMP - Debug
+    # print(f"API key found! ('{api_key}')\n") # TEMP - Debug
     return api_key
 
 # For testing
@@ -242,12 +244,13 @@ def main():
     ## Tests
     # response = api_test.list_bibles("eng")["data"]
     # response = api_test.list_books()["data"]
-    # response = api_test.search("worry", limit = 3, fuzziness = "0")
+    # response = api_test.search("worry", 3, "0")
     # response = api_test.list_verses("John", 11)["data"]
     # response = api_test.get_verse("John", 11, 35)["data"]["content"][0]["items"][1]
 
     print(scripture_api.replace_suffix_with_wildcard("Peace"))
     # print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
+
 
 if __name__ == '__main__':
     main()

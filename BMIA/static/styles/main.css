@@ -1,10 +1,10 @@
 h1 {
-    center;
-    color = white;
+    text-align: center;
+    color: white;
 }
 
 body {
-  background-color: lightblue;
+  background-color: #84B1EB;
 }
 
 html {
@@ -42,10 +42,10 @@ html {
   height: 80px;
   width: 80px;
   border-radius: 50%;
-  background: #4086e1;
+  background: #4086E1;
   color: white;
   font-size: 18px;
-  border: 2px solid #4086e1;
+  border: 2px solid #4086E1;
   box-shadow: 1px 1px solid grey;
 }
 
@@ -53,20 +53,9 @@ html {
 .form__send__btn:hover {
   transition: 0.3s;
   background: white;
-  border: 2px solid #4086e1;
-  color: #4086e1;
+  border: 2px solid #4086E1;
+  color: #4086E1;
   cursor: pointer;
-}
-
-.backdrop {
-  display: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: #95959594;
-  z-index: 1;
 }
 
 .modal {
@@ -78,10 +67,9 @@ html {
   right: 8px;
   margin: auto;
   bottom: 100%;
-  border: 1px solid #cbcbcb;
+  border: 1px solid #CBCBCB;
   border-radius: 5px;
   z-index: 2;
-  /* display: flex; */
 }
 
 .chat_form {
@@ -90,14 +78,14 @@ html {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: #d3d3d3;
+  background: #D3D3D3;
   padding: 5px;
   margin-top: 10px;
 }
 
 .chat_form textarea {
   width: 75%;
-  background: #d3d3d3;
+  background: #D3D3D3;
   border: none;
   resize: none;
   height: 30px;
@@ -111,8 +99,8 @@ html {
 
 .form__send__btn {
   width: 50px;
-  background: #6a6a6a;
-  border: 2px solid #6a6a6a;
+  background: #6A6A6A;
+  border: 2px solid #6A6A6A;
   color: white;
   height: 50px;
   text-align: center;
@@ -123,7 +111,7 @@ html {
   display: flex;
   justify-content: flex-end;
   padding: 12px;
-  background: #7474fb;
+  background: #4086E1;
   border-radius: 5px 5px 0 0;
 }
 
@@ -134,7 +122,7 @@ html {
 .modal__close:hover {
   transition: 0.3s;
   cursor: pointer;
-  color: #9d9d9d;
+  color: #9D9D9D;
 }
 
 .message_box {
@@ -144,6 +132,9 @@ html {
   padding: 12px;
   border-radius: 5px;
   min-height: 200px;
+  max-height: 800px;
+  overflow: scroll;
+  overflow-x: hidden;
   align-items: flex-start;
 }
 
@@ -159,7 +150,7 @@ html {
 
 
 .single_message {
-  background-color: #253c70;
+  background-color: #4676B9;
   color: white;
   padding: 12px;
   border-radius: 5px;
@@ -168,6 +159,5 @@ html {
 }
 
 .single_message_bot {
-
-  background-color: #7292ed;
+  background-color: #82A0D2;
 }

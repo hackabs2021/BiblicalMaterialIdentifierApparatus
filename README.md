@@ -59,6 +59,7 @@ Just run this command in your terminal
 ```bash
 python BMIA/app.py
 ```
+[\[Click here\]](http://127.0.0.1:5000/) once the application has started!
 
 <br/><br/><br/>
 

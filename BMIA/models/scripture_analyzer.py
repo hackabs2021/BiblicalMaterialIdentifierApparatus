@@ -5,7 +5,7 @@ import os
 nltk.download('wordnet')
 from nltk.corpus import wordnet as wn
 
-spacy.load('en')
+spacy.load('en_core_web_sm')
 from spacy.lang.en import English
 from nltk.stem.wordnet import WordNetLemmatizer
 
@@ -19,9 +19,8 @@ import pandas as pd
 class ScriptureAnalyzer:
 
     def __init(self, word=None):
-        print("do nothing")
+        # print("do nothing") # TEMP - Debug
         self.dictionary = None
-        # self.word = word
         self.text_data = []
 
     def tokenize(self, text):
@@ -57,22 +56,22 @@ class ScriptureAnalyzer:
         return tokens
 
     def put_in_text_data(self):
-        print("prepare text for lda and put in dictionary holder")
+        # print("prepare text for lda and put in dictionary holder") # TEMP - Debug
         self.text_data = []
         CURR_DIR = os.path.dirname(os.path.realpath(__file__))
-        print(CURR_DIR)
+        # print(CURR_DIR) # TEMP - Debug
         with open(CURR_DIR + '\\covid_broad-match_us_2021-10-23.csv') as f:
             for line in f:
                 if random.random() > .99:
                     splitline = line.split(',')[0]
                     tokens = self.prepare_text_for_lda(splitline)
-                    #print(tokens)
+                    # #print(tokens) # TEMP - Debug
                     self.text_data.append(tokens)
         # df = pd.read_csv(r'uncertainty_phrase-match_us_2021-10-24.csv')
         # df['clean_keyword'] = df['keyword'].apply(lambda x: nltk.tokenize.word_tokenize(x))
 
     def find_10_topics(self):
-        print("find 10 topics")
+        # print("find 10 topics") # TEMP - Debug
         dictionary = corpora.Dictionary(self.text_data)
         corpus = [dictionary.doc2bow(text) for text in self.text_data]
         import pickle
@@ -82,17 +81,19 @@ class ScriptureAnalyzer:
         NUM_TOPICS = 10
         ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=NUM_TOPICS, id2word=dictionary, passes=15)
         ldamodel.save('model5.gensim')
-        topics = ldamodel.print_topics(num_words=4)
-        print("starting topics:")
-        for topic in topics:
-            print(topic)
-        print("***********************")
+
+        # # TEMP- Debug
+        # topics = ldamodel.print_topics(num_words=4)
+        # print("starting topics:")
+        # for topic in topics:
+        #     print(topic)
+        # print("***********************")
 
         #new_doc = "disease"
         #new_doc = self.prepare_text_for_lda(new_doc)
         #new_doc_bow = dictionary.doc2bow(new_doc)
-        #print(new_doc_bow)
-        #print(ldamodel.get_document_topics(new_doc_bow))
+        # #print(new_doc_bow) # TEMP - Debug
+        # #print(ldamodel.get_document_topics(new_doc_bow)) # TEMP - Debug
 
 
 if __name__ == '__main__':
