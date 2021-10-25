@@ -202,15 +202,17 @@ class scripture_api:
     #
     #   Returns: Word with suffix replaced
     def replace_suffix_with_wildcard(word:str) -> str:
+        # Find and replace suffix
         for suffix in suffixes:
             if (word.endswith(suffix)):
                 return f"{word[:-len(suffix)]}*"
 
-# For testing
-def main():
+        return f"{word}*" # If no suffix just add wildcard
+
+# Gets API key from file
+def retrieve_api_key():
     CURRENT_DIRECTORY = os.path.dirname((os.path.realpath(__file__)))
 
-    # Retrieve API key
     api_key = ""
     with open(CURRENT_DIRECTORY + "/api_key.txt", "r") as api_key_file:
         lines =  api_key_file.readlines() # Read file
@@ -223,23 +225,29 @@ def main():
                 raise  Exception(f"Error, API key cannot be across multiple lines! (\"{os.getcwd()}/api_key.txt\")")
 
         api_key = lines[0] # Access API key
-    print(f"API key found! ('{api_key}')\n") # TEMP - Debug
 
+    print(f"API key found! ('{api_key}')\n") # TEMP - Debug
+    return api_key
+
+# For testing
+def main():
+    api_key = retrieve_api_key()
 
     # Setup
     api_test = scripture_api()
     api_test.authenticate(api_key)
-    api_test.set_bible('65eec8e0b60e656b-01') # Free Bible Version
+    # api_test.set_bible('65eec8e0b60e656b-01') # Free Bible Version
+    api_test.set_bible('de4e12af7f28f599-01') # King James (Authorised) Version
 
     ## Tests
     # response = api_test.list_bibles("eng")["data"]
     # response = api_test.list_books()["data"]
     # response = api_test.search("worry", limit = 3, fuzziness = "0")
     # response = api_test.list_verses("John", 11)["data"]
-    response = api_test.get_verse("John", 11, 35)["data"]["content"][0]["items"][1]
+    # response = api_test.get_verse("John", 11, 35)["data"]["content"][0]["items"][1]
 
-    # print(scripture_api.replace_suffix_with_wildcard("Testing"))
-    print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
+    print(scripture_api.replace_suffix_with_wildcard("Peace"))
+    # print(f"Response:\n{json.dumps(response, indent=4, sort_keys=True)}")
 
 if __name__ == '__main__':
     main()
